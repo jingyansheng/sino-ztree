@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <title>选择用户</title>
+    <link rel="stylesheet" href="./assets/zTree_v3-master/css/zTreeStyle/zTreeStyle.css" />
+    <link rel="stylesheet" href="./dest/css/sino-ztree.css" />
+    <script type="text/javascript" src="./assets/vue/vue.min.js"></script>
+    <script type="text/javascript" src="./assets/jquery/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="./assets/zTree_v3-master/js/jquery.ztree.all.js"></script>
+    <script type="text/javascript" src="./dest/js/sino-ztree.js"></script>
+
+    <style type="text/css">
+      .demo-content {
+        margin: 0 auto;
+        padding: 20px;
+        width: 800px;
+      }
+      .demo-form {
+        float: left;
+        padding: 20px;
+        width: 380px;
+        border-right: 1px solid #dcdfe6;
+        box-sizing: border-box;
+      }
+      .demo-item {
+        padding-bottom: 10px;
+      }
+      .demo-label {
+        padding: 4px;
+      }
+      .demo-input {
+        display: inline-block;
+        margin: 10px 0;
+        padding-right: 15px;
+        padding-left: 15px;
+        width: 100%;
+        height: 40px;
+        font-size: 12px;
+        border: 1px solid #dcdfe6;
+        border-radius: 4px;
+        outline: none;
+        box-sizing: border-box;
+        cursor: pointer;
+        transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+      }
+      .demo-input:hover {
+        border-color: #c0c4cc;
+      }
+      .demo-input:focus {
+        outline: none;
+        border-color: #409eff;
+      }
+      .demo-setting {
+        float: right;
+        padding: 20px;
+        width: 380px;
+      }
+      .demo-button {
+        width: 100%;
+        margin-bottom: 20px;
+      }
+      .demo-line {
+        margin: 10px 0 20px;
+        border-top: 1px solid #dcdfe6;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="demo-content" id="app">
+      <form class="demo-form">
+        <div class="demo-item">
+          <label class="demo-label">treeNode attribute</label>
+          <input autocomplete="off" class="demo-input" type="text" id="id" v-model="add.key"/>
+        </div>
+        <div class="demo-item">
+          <label class="demo-label">input id</label>
+          <input autocomplete="off" class="demo-input" type="text" id="name" v-model="add.value"/>
+        </div>
+        <button class="sino-button demo-button" type="button" @click="onAdd">添加回写属性</button>
+
+        <div class="demo-line"></div>
+
+        <div class="demo-item" v-for="(item, index) in result" :key="index">
+          <label class="demo-label">{{ item.value }}</label>
+          <input autocomplete="off" class="demo-input" type="text" :id="item.value" readonly/>
+        </div>
+        <button class="sino-button sino-button--primary demo-button" type="button" @click="onClick">选择</button>
+      </form>
+
+      <div class="demo-setting">
+        <div class="demo-item">
+          <label class="demo-label">cfs.model.title</label>
+          <input autocomplete="off" class="demo-input" type="text" v-model="cfs.model.title"/>
+        </div>
+
+        <div class="demo-item">
+          <label class="demo-label">cfs.config.url</label>
+          <input autocomplete="off" class="demo-input" type="text" v-model="cfs.config.url"/>
+        </div>
+        <div class="demo-item">
+          <label class="demo-label">cfs.config.type</label>
+          <input autocomplete="off" class="demo-input" type="text" v-model="cfs.config.type"/>
+        </div>
+        <div class="demo-item">
+          <label class="demo-label">cfs.config.rootId</label>
+          <input autocomplete="off" class="demo-input" type="text" v-model="cfs.config.rootId"/>
+        </div>
+        <div class="demo-item">
+          <label class="demo-label">cfs.config.max</label>
+          <input autocomplete="off" class="demo-input" type="text" v-model="cfs.config.max"/>
+        </div>
+        <div class="demo-item">
+          <label class="demo-label">cfs.config.showLeader</label>
+          <input autocomplete="off" class="demo-input" type="text" v-model="cfs.config.showLeader"/>
+        </div>
+        <div class="demo-item">
+          <label class="demo-label">cfs.config.showCompany</label>
+          <input autocomplete="off" class="demo-input" type="text" v-model="cfs.config.showCompany"/>
+        </div>
+        <div class="demo-item">
+          <label class="demo-label">cfs.config.showParent</label>
+          <input autocomplete="off" class="demo-input" type="text" v-model="cfs.config.showParent"/>
+        </div>
+        <div class="demo-item">
+          <label class="demo-label">cfs.config.hideNodes</label>
+          <input autocomplete="off" class="demo-input" type="text" v-model="cfs.config.hideNodes"/>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      var app = new Vue({
+        el: '#app',
+        data: function () {
+          return {
+            add: {
+              key: '',
+              value: ''
+            },
+            result: [
+              {
+                key: 'id',
+                value: 'userId'
+              }, {
+                key: 'name',
+                value: 'userName'
+              }
+            ],
+            cfs: {
+              model: {
+                title: '选择用户' // 弹窗标题
+              },
+              result: {},
+              config: {
+                url: '/sino-ztree/json/user.json',
+                type: 'user', // 类型
+                rootId: '001', // 顶级部门 id ，只显示当前部门下的数据
+                max: 0, // 最大可选数，0 为无限制，最大可选数为 500
+                showLeader: true, // 是否显示领导部门
+                showCompany: true, // 是否显示公司下属子公司
+                showParent: false, // 是否显示公司 / 部门所属父公司
+                hideNodes: '财务部,其他', // 隐藏节点名称模糊匹配的节点，节点名称间使用 `,` 分割
+              }
+            }
+          }
+        },
+        methods: {
+          onAdd: function () {
+            if (this.add.key && this.add.value) {
+              this.result.push(this.add);
+              this.add = {
+                key: '',
+                value: ''
+              };
+            }
+          },
+          onClick: function () {
+            for (var i in this.result) {
+              this.cfs.result[this.result[i].key] = this.result[i].value;
+            }
+
+            this.cfs.config.showLeader === 'false' ? false : true;
+            this.cfs.config.showCompany === 'false' ? false : true;
+            this.cfs.config.showParent === 'false' ? false : true;
+
+            console.log(this.cfs);
+
+            sinoZtree.publicEvt.init(this.cfs);
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,340 @@
+.sino-ztree {
+  display: inline-block;
+  padding-bottom: 10px;
+  width: 800px;
+  font-size: 18px;
+  text-align: left;
+  background-color: #fff;
+  border-radius: 4px;
+  border: 1px solid #ebeef5;
+  box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+  overflow: hidden;
+  vertical-align: middle;
+  backface-visibility: hidden;
+  &__wrapper {
+    z-index: 101;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    &:after {
+      content: "";
+      display: inline-block;
+      height: 100%;
+      width: 0;
+      vertical-align: middle;
+    }
+  }
+  &__header {
+    position: relative;
+    padding: 15px 15px 10px;
+  }
+  &__content {
+    position: relative;
+    padding: 10px 15px;
+    color: $color-gray;
+    font-size: 14px;
+  }
+  &__footer {
+    padding: 0 15px;
+    .sino-ztree__content {
+      width: 100%;
+      border: 1px solid $border-color;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    .sino-button {
+      margin-right: 10px;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+  &__title {
+    padding-left: 0;
+    margin-bottom: 0;
+    color: $color-black;
+    font-size: 18px;
+    line-height: 1;
+  }
+  &__headerbtn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 16px;
+    cursor: pointer;
+    &:hover .sino-ztree__close {
+      color: $color-primary;
+    }
+  }
+  &__close {
+    color: $color-gray;
+  }
+}
+
+.sino-transfer {
+  &-panel {
+    position: relative;
+    display: inline-block;
+    // width: 45%;
+    width: 49.0625%;
+    height: 481px;
+    padding: 10px;
+    border: 1px solid $border-color;
+    border-radius: 4px;
+    box-sizing: border-box;
+    vertical-align: middle;
+    overflow: hidden;
+    &:first-child {
+      margin-right: 1.875%;
+    }
+    &:last-child {
+      .ztree {
+        height: 420px;
+      }
+    }
+    &__header {
+      padding-bottom: 10px;
+      width: 100%;
+      color: $color-black;
+      font-size: 14px;
+      font-weight: 700;
+      text-align: center;
+      border-bottom: 1px solid $border-color;
+      &--extra {
+        font-size: 12px;
+        font-weight: 500;
+        color: $color-gray;
+      }
+    }
+    &__search {
+      position: relative;
+      margin-top: 10px;
+    }
+    &__body {
+      .zTree {
+        display: none;
+        padding: 0;
+        margin: 5px 0 0;
+        height: 382px;
+        color: $color-black;
+        overflow-y: scroll;
+        overflow-x: hidden;
+      }
+    }
+  }
+  &-buttons {
+    display: inline-block;
+    padding: 0 0px;
+    width: 10%;
+    text-align: center;
+    vertical-align: middle;
+  }
+  &__button {
+    margin-bottom: 10px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.sino-loading {
+  padding: 10px;
+  color: $color-gray;
+  text-align: center;
+  user-select: none;
+}
+
+.sino-left {
+  display: inline-block;
+  width: 50%;
+  text-align: left;
+}
+
+.sino-right {
+  display: inline-block;
+  width: 50%;
+  text-align: right;
+}
+
+.sino-text {
+  color: $color-black;
+  font-size: 14px;
+  line-height: 29px;
+}
+
+.sino-search {
+  display: inline-block;
+  padding-right: 30px;
+  padding-left: 30px;
+  width: 100%;
+  height: 32px;
+  font-size: 12px;
+  border: 1px solid $border-color;
+  border-radius: 16px;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+  cursor: pointer;
+  &:hover {
+    border-color: #c0c4cc;
+  }
+  &:focus {
+    outline: none;
+    border-color: $color-primary;
+  }
+  &__icon {
+    position: absolute;
+    left: 10px;
+    top: 7px;
+    color: #c0c4cc;
+    text-align: center;
+    transition: all .3s;
+    cursor: pointer;
+  }
+  &__close {
+    display: none;
+    position: absolute;
+    right: 10px;
+    top: 7px;
+    color: #c0c4cc;
+    text-align: center;
+    transition: all .3s;
+    cursor: pointer;
+  }
+}
+
+/* zTree style */
+.ztree {
+  display: none;
+  padding: 0;
+  margin: 10px 0 0;
+  height: 378px;
+  color: $color-black;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+/* 滚动条整体部分，必须要设置 */
+.ztree::-webkit-scrollbar {
+  width: 8px;
+  height: 10px;
+  background-color: transparent;
+}
+
+/* 滚动条的轨道 */
+.ztree::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+/* 滚动条的滑块按钮 */
+.ztree::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: #dcdfe6;
+}
+
+/* 滚动条的上下两端的按钮 */
+.ztree::-webkit-scrollbar-button {
+  height: 4px;
+  background-color: transparent;
+}
+
+.ztree li {
+  padding: 2px;
+}
+
+// .ztree li ul {
+//   padding: 2px 0 0 18px;
+// }
+
+.ztree li a {
+  padding: 3px 2px 2px;
+  border-radius: 2px;
+}
+
+.ztree li a:hover {
+  text-decoration: none;
+  background-color: #eee;
+}
+
+.ztree li a.curSelectedNode {
+  padding-top: 2px;
+  padding-left: 1px;
+  background-color: #ecf5ff;
+  border: 1px solid #b3d8ff;
+  opacity: 1;
+}
+
+.ztree li span.button.switch {
+  margin: 2px;
+}
+
+.ztree li {
+  .button.root_ico_open, .button.root_ico_close {
+    margin-right: 2px;
+    background: url(../images/root.png) no-repeat scroll 0 0 transparent;
+    vertical-align: top;
+    vertical-align: middle;
+  }
+  .button.depts_ico_open, .button.depts_ico_close {
+    margin-right: 2px;
+    background: url(../images/depts.png) no-repeat scroll 0 0 transparent;
+    vertical-align: top;
+    vertical-align: middle;
+  }
+  .button.deptu_ico_open, .button.deptu_ico_close {
+    margin-right: 2px;
+    background: url(../images/deptu.png) no-repeat scroll 0 0 transparent;
+    vertical-align: top;
+    vertical-align: middle;
+  }
+  .button.dept_ico_open, .button.dept_ico_close {
+    margin-right: 2px;
+    background: url(../images/dept.png) no-repeat scroll 0 0 transparent;
+    vertical-align: top;
+    vertical-align: middle;
+  }
+  .button.root_ico_docu {
+    margin-right: 2px;
+    background: url(../images/root.png) no-repeat scroll 0 0 transparent;
+    vertical-align: top;
+    vertical-align: middle;
+  }
+  .button.deptu_ico_docu {
+    margin-right: 2px;
+    background: url(../images/deptu.png) no-repeat scroll 0 0 transparent;
+    vertical-align: top;
+    vertical-align: middle;
+  }
+  .button.depts_ico_docu {
+    margin-right: 2px;
+    background: url(../images/depts.png) no-repeat scroll 0 0 transparent;
+    vertical-align: top;
+    vertical-align: middle;
+  }
+  .button.dept_ico_docu {
+    margin-right: 2px;
+    background: url(../images/dept.png) no-repeat scroll 0 0 transparent;
+    vertical-align: top;
+    vertical-align: middle;
+  }
+  .button.user_ico_docu {
+    margin-right: 2px;
+    background: url(../images/user.png) no-repeat scroll 0 0 transparent;
+    vertical-align: top;
+    vertical-align: middle;
+  }
+}
+
+
+
+
+
+
+
