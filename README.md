@@ -1,6 +1,9 @@
 ## 🚀 Sino Ztree
 
-![avatar](https://dev.tencent.com/u/mikasa33/p/sino-ztree/git/blob/master/screenshot.png)
+![avatar](https://github.com/Mikasa33/sino-ztree/blob/master/screenshot.png)
+
+- [Github](https://github.com/Mikasa33/sino-ztree)
+- [Coding](https://dev.tencent.com/u/mikasa33/p/sino-ztree/git)
 
 ### 💎 简介
 
