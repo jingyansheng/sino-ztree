@@ -2,8 +2,8 @@
 
 ![avatar](https://github.com/Mikasa33/sino-ztree/blob/master/screenshot.png)
 
-- [Github](https://github.com/Mikasa33/sino-ztree)
-- [Coding](https://dev.tencent.com/u/mikasa33/p/sino-ztree/git)
+- [Github 仓库](https://github.com/Mikasa33/sino-ztree)
+- [Coding 仓库](https://dev.tencent.com/u/mikasa33/p/sino-ztree/git)
 
 ### 💎 简介
 
